@@ -15,6 +15,11 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    extend: {
+      animation: ["group-hover"],
+    },
+  },
   plugins: [],
 };
 export default config;
