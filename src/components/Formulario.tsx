@@ -10,18 +10,6 @@ function Formulario({ title, subtitle }: Props) {
   const [taskTitle, setTeskTitle] = useState<string>("");
   const [taskDescription, setTeskDescription] = useState<string>("");
 
-  function checkFields() {
-    if (
-      taskTitle !== "" &&
-      taskTitle.trim().length > 0 &&
-      taskDescription !== "" &&
-      taskDescription.trim().length > 0
-    ) {
-      return "";
-    }
-    return "disabled";
-  }
-
   async function handleSubmit() {
     if (
       taskTitle !== "" &&
@@ -49,6 +37,8 @@ function Formulario({ title, subtitle }: Props) {
       } catch (error) {
         console.error("Error creating task:", error);
         // Handle errors as needed...
+      } finally {
+        location.reload();
       }
     } else {
       toast.error("Fields are required");
@@ -77,7 +67,7 @@ function Formulario({ title, subtitle }: Props) {
         ></textarea>
         <button
           onClick={handleSubmit}
-          className={`group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md ${checkFields}`}
+          className={`group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md `}
         >
           Submit{"  "}
           <span className="inline-block group-hover:animate-bounce ">🚀</span>
