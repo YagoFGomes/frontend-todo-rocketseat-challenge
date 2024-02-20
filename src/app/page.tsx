@@ -1,4 +1,5 @@
 "use client";
+import EmptyTaskCard from "@/components/EmptyTaskCard";
 import Formulario from "@/components/Formulario";
 import Header from "@/components/Header";
 import SkeletonCard from "@/components/SkeletonCard";
@@ -38,6 +39,7 @@ export default function Home() {
               <TaskCard task={task} key={task.id} onDeleteTask={onDeleteTask} />
             );
           })}
+        {tasks.length == 0 && !isLoading && <EmptyTaskCard />}
       </div>
     </main>
   );

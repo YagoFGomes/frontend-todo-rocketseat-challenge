@@ -6,8 +6,8 @@ interface Props {
 }
 
 function Formulario({ title, subtitle }: Props) {
-  const [taskTitle, setTeskTitle] = useState<string | null>(null);
-  const [taskDescription, setDescription] = useState<string | null>(null);
+  const [taskTitle, setTeskTitle] = useState<string>("");
+  const [taskDescription, setTeskDescription] = useState<string>("");
 
   async function handleSubmit() {
     if (
@@ -44,7 +44,7 @@ function Formulario({ title, subtitle }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <h1 className="text-4xl font-bold mb-2">{title}</h1>
       <p className="mb-8">{subtitle}</p>
       <div className="mb-6">
@@ -52,12 +52,19 @@ function Formulario({ title, subtitle }: Props) {
           type="text"
           placeholder="Title"
           className="w-full p-3 mb-4 bg-gray-700 rounded"
+          value={taskTitle}
+          onChange={(e) => setTeskTitle(e.target.value)}
         />
         <textarea
           placeholder="Description"
           className="w-full p-3 mb-4 bg-gray-700 rounded"
+          value={taskDescription}
+          onChange={(e) => setTeskDescription(e.target.value)}
         ></textarea>
-        <button className="group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md">
+        <button
+          onClick={handleSubmit}
+          className="group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md"
+        >
           Submit{"  "}
           <span className="inline-block group-hover:animate-bounce ">🚀</span>
         </button>

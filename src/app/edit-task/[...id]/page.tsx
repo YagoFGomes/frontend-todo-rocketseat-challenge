@@ -24,6 +24,7 @@ function EditTask({ params }: { params: { id: string } }) {
 
   async function handleEditTask() {
     await UseEditTask(idTaks, title, description);
+    location.replace("/");
   }
 
   function returnStatus(taskCompleted: string | null) {

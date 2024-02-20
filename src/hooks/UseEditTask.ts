@@ -21,7 +21,7 @@ export async function UseEditTask(
         throw new Error(`HTTP error! status: ${response.status}`);
       }
     }
-    toast.success("Task Edited!");
+    // toast.success("Task Edited!");
   } catch (e: any) {
     console.error(e);
     toast.error(e.message);
