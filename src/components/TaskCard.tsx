@@ -6,8 +6,9 @@ import ButtonSettings from "./ButtonSettings";
 
 interface TaskCardProps {
   task: Task;
+  onDeleteTask: (taskId: string) => void;
 }
-function TaskCard({ task }: TaskCardProps) {
+function TaskCard({ task, onDeleteTask }: TaskCardProps) {
   function checkStatusTodo() {
     if (task.completed_at !== null) {
       return "completed";
@@ -47,11 +48,12 @@ function TaskCard({ task }: TaskCardProps) {
     <div className="group bg-gray-700 p-4 rounded mb-4 relative hover:bg-purple-700 transition-colors ">
       <div className="absolute top-0 right-0 p-2">
         <div className="w-5 h-5 text-zinc-200 group-hover:animate-spin transition-all">
-          {/* <FiSettings className="w-full h-full" /> */}
           <ButtonSettings
             task={task}
+            statusTask={statusTask}
             onCompleteTask={onCompleteTask}
             onUncompleteCompleteTask={onUncompleteCompleteTask}
+            onDeleteTask={onDeleteTask}
           />
         </div>
       </div>

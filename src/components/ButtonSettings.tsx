@@ -5,27 +5,39 @@ import React from "react";
 import { FiSettings } from "react-icons/fi";
 import Link from "next/link";
 import { CompleteTaks } from "@/hooks/CompleteTask";
+import { UncompleteTaks } from "@/hooks/UncompleteTask";
+import { toast } from "sonner";
+import { DeleteTask } from "@/hooks/DeleteTask";
 
 interface Props {
   task: Task;
+  statusTask: "completed" | "todo";
   onCompleteTask: () => void;
   onUncompleteCompleteTask: () => void;
+  onDeleteTask: (taskId: string) => void;
 }
 
 function ButtonSettings({
   task,
+  statusTask,
   onCompleteTask,
   onUncompleteCompleteTask,
+  onDeleteTask,
 }: Props) {
   function handleCompleteTaks(task_id: string) {
     CompleteTaks(task_id);
     onCompleteTask();
   }
   function handleUncompleteCompleteTask(task_id: string) {
-    CompleteTaks(task_id);
+    UncompleteTaks(task_id);
     onUncompleteCompleteTask();
   }
-  function handleDeletetTaks(task_id: string) {}
+  async function handleDeletetTask(taskId: string) {
+    const isDeleted = await DeleteTask(taskId);
+    if (isDeleted) {
+      onDeleteTask(taskId);
+    }
+  }
   return (
     <>
       <DropdownMenu.Root>
@@ -38,7 +50,7 @@ function ButtonSettings({
           <Link href={`/edit-task/${task.id}`}>
             <DropdownMenu.Item>Edit</DropdownMenu.Item>
           </Link>
-          {!task.completed_at ? (
+          {statusTask !== "completed" ? (
             <DropdownMenu.Item
               onClick={() => handleCompleteTaks(task.id)}
               color="green"
@@ -47,7 +59,7 @@ function ButtonSettings({
             </DropdownMenu.Item>
           ) : (
             <DropdownMenu.Item
-              onClick={() => handleCompleteTaks(task.id)}
+              onClick={() => handleUncompleteCompleteTask(task.id)}
               color="red"
             >
               Uncomplete Task
@@ -56,7 +68,7 @@ function ButtonSettings({
 
           <DropdownMenu.Separator />
           <DropdownMenu.Item
-            onClick={() => handleDeletetTaks(task.id)}
+            onClick={() => handleDeletetTask(task.id)}
             color="red"
           >
             Delete
