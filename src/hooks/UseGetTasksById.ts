@@ -9,7 +9,7 @@ export function UseGetTasksById(idTask: string) {
 
   useEffect(() => {
     queryGetTaskById(idTask, setData, setIsLoading, setError);
-  }, []);
+  }, [idTask]);
 
   return { data, isLoading, error };
 }
