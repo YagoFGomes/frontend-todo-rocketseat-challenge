@@ -2,7 +2,7 @@ import { Task } from "@/types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export function useGetTasks() {
+export function UseGetAllTasks() {
   const [data, setData] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);

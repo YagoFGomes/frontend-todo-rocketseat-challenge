@@ -1,6 +1,8 @@
 "use client";
 import SkeletonCard from "@/components/SkeletonCard";
-import { useGetTaskById } from "@/hooks/GetTasksById";
+import { UseEditTask } from "@/hooks/UseEditTask";
+
+import { UseGetTasksById } from "@/hooks/UseGetTasksById";
 import React, { useEffect, useState } from "react";
 
 import { FiHome } from "react-icons/fi";
@@ -8,7 +10,7 @@ import { FiHome } from "react-icons/fi";
 function EditTask({ params }: { params: { id: string } }) {
   const idTaks = params.id[0];
 
-  const { data: task, isLoading } = useGetTaskById(idTaks);
+  const { data: task, isLoading } = UseGetTasksById(idTaks);
 
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -19,6 +21,10 @@ function EditTask({ params }: { params: { id: string } }) {
       setDescription(task.description);
     }
   }, [task]);
+
+  async function handleEditTask() {
+    await UseEditTask(idTaks, title, description);
+  }
 
   function returnStatus(taskCompleted: string | null) {
     if (taskCompleted) {
@@ -78,7 +84,10 @@ function EditTask({ params }: { params: { id: string } }) {
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
 
-              <button className="group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md">
+              <button
+                onClick={handleEditTask}
+                className="group w-full p-3 bg-purple-800 rounded hover:bg-purple-700 transition-all font-semibold text-md"
+              >
                 Submit{"  "}
                 <span className="inline-block group-hover:animate-bounce ">
                   🚀

@@ -1,8 +1,8 @@
 import { toast } from "sonner";
 
-export async function DeleteTask(task_id: string) {
+export async function UseDeleteTask(taskId: string) {
   try {
-    const response = await fetch(`/api/tasks/${task_id}`, {
+    const response = await fetch(`/api/tasks/${taskId}`, {
       method: "DELETE",
     });
 

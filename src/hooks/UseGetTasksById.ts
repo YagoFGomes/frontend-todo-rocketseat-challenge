@@ -2,7 +2,7 @@ import { Task } from "@/types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export function useGetTaskById(idTask: string) {
+export function UseGetTasksById(idTask: string) {
   const [data, setData] = useState<Task | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);

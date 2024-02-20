@@ -1,18 +1,16 @@
 "use client";
 import Formulario from "@/components/Formulario";
 import Header from "@/components/Header";
-import Message from "@/components/Message";
 import SkeletonCard from "@/components/SkeletonCard";
 import TaskCard from "@/components/TaskCard";
-import ToastContainer from "@/components/ToastContainer";
-import { useGetTasks } from "@/hooks/GetAllTasks";
+import { UseGetAllTasks } from "@/hooks/UseGetAllTasks";
 import { Task } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const { data, error, isLoading } = useGetTasks();
+  const { data, isLoading } = UseGetAllTasks();
 
   useEffect(() => {
     setTasks(data);

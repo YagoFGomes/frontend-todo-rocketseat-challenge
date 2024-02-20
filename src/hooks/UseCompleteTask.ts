@@ -1,11 +1,8 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { toast } from "sonner";
 
-export async function UncompleteTaks(task_id: string) {
-  //   console.log(`/api/tasks/${task_id}/completed`);
+export async function UseCompleteTask(taskId: string) {
   try {
-    const response = await fetch(`/api/tasks/${task_id}/uncompleted`, {
+    const response = await fetch(`/api/tasks/${taskId}/completed`, {
       method: "PATCH",
     });
 
@@ -16,7 +13,7 @@ export async function UncompleteTaks(task_id: string) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
     }
-    toast.warning("Task returned to uncomplete");
+    toast.success("Task Completed!");
   } catch (e: any) {
     toast.error(e.message);
   }

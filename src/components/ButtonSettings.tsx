@@ -4,10 +4,10 @@ import { Button, DropdownMenu } from "@radix-ui/themes";
 import React from "react";
 import { FiSettings } from "react-icons/fi";
 import Link from "next/link";
-import { CompleteTaks } from "@/hooks/CompleteTask";
-import { UncompleteTaks } from "@/hooks/UncompleteTask";
+import { UseCompleteTask } from "@/hooks/UseCompleteTask";
+import { UseUncompleteTask } from "@/hooks/UseUncompleteTask";
 import { toast } from "sonner";
-import { DeleteTask } from "@/hooks/DeleteTask";
+import { UseDeleteTask } from "@/hooks/UseDeleteTask";
 
 interface Props {
   task: Task;
@@ -25,15 +25,15 @@ function ButtonSettings({
   onDeleteTask,
 }: Props) {
   function handleCompleteTaks(task_id: string) {
-    CompleteTaks(task_id);
+    UseCompleteTask(task_id);
     onCompleteTask();
   }
   function handleUncompleteCompleteTask(task_id: string) {
-    UncompleteTaks(task_id);
+    UseUncompleteTask(task_id);
     onUncompleteCompleteTask();
   }
   async function handleDeletetTask(taskId: string) {
-    const isDeleted = await DeleteTask(taskId);
+    const isDeleted = await UseDeleteTask(taskId);
     if (isDeleted) {
       onDeleteTask(taskId);
     }
