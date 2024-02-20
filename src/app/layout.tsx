@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { Theme } from '@radix-ui/themes';
 import ToastContainer from "@/components/ToastContainer";
+import "./globals.css";
+import '@radix-ui/themes/styles.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-svg-pattern`}>
+      <Theme>
         {children}
         <ToastContainer />
+      </Theme>
       </body>
     </html>
   );
