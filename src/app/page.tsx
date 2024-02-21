@@ -2,6 +2,7 @@
 import EmptyTaskCard from "@/components/EmptyTaskCard";
 import Formulario from "@/components/Formulario";
 import Header from "@/components/Header";
+import ScrollAreaComponent from "@/components/ScrollAreaComponent";
 import SkeletonCard from "@/components/SkeletonCard";
 import TaskCard from "@/components/TaskCard";
 import { UseGetAllTasks } from "@/hooks/UseGetAllTasks";
@@ -24,7 +25,7 @@ export default function Home() {
 
   return (
     <main className="text-white h-screen flex items-center ">
-      <div className="max-w-xl mx-auto p-8">
+      <div className="max-w-2xl mx-auto p-8">
         <Formulario
           title="Your todo tasks"
           subtitle="Manage your tasks efficiently"
@@ -32,13 +33,19 @@ export default function Home() {
         <br />
         <Header title="Tasks" />
         {isLoading && <SkeletonCard />}
-        {tasks &&
-          tasks.length > 0 &&
-          tasks.map((task) => {
-            return (
-              <TaskCard task={task} key={task.id} onDeleteTask={onDeleteTask} />
-            );
-          })}
+        <ScrollAreaComponent>
+          {tasks &&
+            tasks.length > 0 &&
+            tasks.map((task) => {
+              return (
+                <TaskCard
+                  task={task}
+                  key={task.id}
+                  onDeleteTask={onDeleteTask}
+                />
+              );
+            })}
+        </ScrollAreaComponent>
         {tasks.length == 0 && !isLoading && <EmptyTaskCard />}
       </div>
     </main>
