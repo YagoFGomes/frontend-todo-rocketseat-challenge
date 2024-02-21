@@ -7,6 +7,17 @@ This project depends on this API being up and running.
 
 
 ## First Staps
+
+Install the dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
 Now you need to run the development server:
 
 ```bash
@@ -15,8 +26,6 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
